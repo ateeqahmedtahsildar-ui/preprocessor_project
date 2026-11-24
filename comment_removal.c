@@ -19,7 +19,7 @@ int remove_comments(const char *input_file, const char *output_file) {
     int in_char = 0;
 
     while ((c = fgetc(in)) != EOF) {
-        // Handle string literals so // or /* inside strings are ignored
+    
         if (in_string) {
             fputc(c, out);
             if (c == '\\') {
@@ -31,7 +31,7 @@ int remove_comments(const char *input_file, const char *output_file) {
             continue;
         }
 
-        // Handle character literals
+    
         if (in_char) {
             fputc(c, out);
             if (c == '\\') {
@@ -52,15 +52,15 @@ int remove_comments(const char *input_file, const char *output_file) {
         } else if (c == '/') {
             next = fgetc(in);
             if (next == '/') {
-                // Single-line comment: skip until newline
+                
                 while ((c = fgetc(in)) != EOF && c != '\n');
                 if (c == '\n') fputc('\n', out);
             } else if (next == '*') {
-                // Multi-line comment: skip until */
+    
                 int prev = 0;
                 while ((c = fgetc(in)) != EOF) {
                     if (c == '\n') {
-                        fputc('\n', out); // Preserve line structure
+                        fputc('\n', out); 
                     }
                     if (prev == '*' && c == '/') {
                         break;
