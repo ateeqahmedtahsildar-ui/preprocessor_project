@@ -210,7 +210,7 @@ int process_macros(const char *input_file, const char *output_file) {
 
         if (strncmp(ptr, "#define", 7) == 0 && isspace((unsigned char)ptr[7])) {
             add_macro(ptr);
-            continue; // Remove #define line from output
+            continue; 
         }
         expand_line(line, out);
     }
