@@ -3,11 +3,11 @@
 
 
 static FILE *open_header_file(const char *filename) {
-    // Try current directory first
+    
     FILE *fp = fopen(filename, "r");
     if (fp) return fp;
 
-    // Fallback to standard system include path
+    
     char sys_path[512];
     snprintf(sys_path, sizeof(sys_path), "/usr/include/%s", filename);
     return fopen(sys_path, "r");
